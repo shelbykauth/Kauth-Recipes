@@ -1,5 +1,5 @@
 {
-  "name": "novelore-client",
+  "name": "@kauth/recipes-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {

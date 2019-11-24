@@ -1,5 +1,5 @@
 {
-  "name": "novelore",
+  "name": "@kauth/recipes",
   "version": "0.0.1",
   "description": "",
   "scripts": {
@@ -15,11 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shelbykauth/NoveLore.git"
+    "url": "git+https://github.com/shelbykauth/KauthRecipes.git"
   },
   "author": "Shelby Kauth",
   "bugs": {
-    "url": "https://github.com/shelbykauth/NoveLore/issues"
+    "url": "https://github.com/shelbykauth/KauthRecipes/issues"
   },
-  "homepage": "https://github.com/shelbykauth/NoveLore#readme"
+  "homepage": "https://github.com/shelbykauth/KauthRecipes#readme"
 }
