@@ -11,3 +11,5 @@ class Recipe {
     this.negativeSearch = {};
   }
 }
+
+export default Recipe;

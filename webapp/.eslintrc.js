@@ -7,7 +7,11 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "lint-on-save": false
+    "lint-on-save": false,
+    "vue/require-v-for-key": false,
+    "no-unused-vars": {
+      args: "none"
+    }
   },
   parserOptions: {
     parser: "babel-eslint"

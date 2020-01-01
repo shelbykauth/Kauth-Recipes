@@ -10,7 +10,9 @@
         </span>
       </div>
     </div>
-    <div id="sidebar"></div>
+    <div id="sidebar">
+      <search-recipe />
+    </div>
     <div id="content">
       <router-view />
     </div>
@@ -18,9 +20,12 @@
 </template>
 
 <script>
+import SearchRecipe from "./views/SearchRecipe.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    SearchRecipe
+  },
   data: function() {
     return {
       headLinks: [
@@ -57,5 +62,17 @@ export default {
       color: #42b983;
     }
   }
+}
+#sidebar {
+  // width: 40%;
+  float: left;
+  display: inline-block;
+}
+#content {
+  max-width: 70%;
+  min-width: 30em;
+  display: inline-block;
+  // width: 70%;
+  // float: left;
 }
 </style>

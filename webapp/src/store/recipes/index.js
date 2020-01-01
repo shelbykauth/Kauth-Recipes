@@ -1,4 +1,6 @@
-export default new Vuex.Store({
+import Recipe from "./Recipe.js";
+
+export default {
   state: {
     allRecipes: [],
     recipesById: {},
@@ -11,6 +13,7 @@ export default new Vuex.Store({
   },
   mutations: {
     addRecipe(state, recipe) {
+      recipe = new Recipe(recipe);
       state.allRecipes.push(recipe);
       if (recipe.id) {
         if (state.recipesById[recipe.id]) {
@@ -21,11 +24,11 @@ export default new Vuex.Store({
       if (!state.recipesByCreator[recipe.creator]) {
         state.recipesByCreator[recipe.creator] = [];
       }
-      state.recipesByCreator[recipes.creator].push(recipe);
+      state.recipesByCreator[recipe.creator].push(recipe);
       if (!state.recipesByName[recipe.name]) {
         state.recipesByName[recipe.name] = [];
       }
-      state.recipesByName[recipes.name].push(recipe);
+      state.recipesByName[recipe.name].push(recipe);
     }
   },
   actions: {
@@ -36,11 +39,53 @@ export default new Vuex.Store({
       return null;
     },
     recipesBySearchTerms(terms) {
-      return [];
+      let list = [];
+      return list;
     },
     recipesByIngredients(ingredients) {
-      return [];
+      let list = [];
+      return list;
     }
   },
-  getters: {}
-});
+  getters: {
+    allRecipes(state, getters) {
+      if (!(state.allRecipes instanceof Array)) {
+        return [];
+      }
+      return state.allRecipes.filter(function(recipe) {
+        return recipe instanceof Recipe;
+      });
+    },
+    genericSearch(state, getters) {
+      return function search(terms) {
+        if (terms instanceof Array) {
+          // Do a thing
+        } else if (typeof terms === "string") {
+          if (terms.indexOf(",") !== -1) {
+            terms = terms.split(",");
+          } else {
+            terms = terms.split(" ");
+          }
+        }
+        let list = getters.allRecipes;
+        for (let i in terms) {
+          let term = terms[i].toLowerCase();
+
+          list = list.filter(function(recipe) {
+            if (recipe.id.toLowerCase().indexOf(term) !== -1) {
+              return true;
+            }
+            if (recipe.name.toLowerCase().indexOf(term) !== -1) {
+              return true;
+            }
+            if (recipe.creator.toLowerCase().indexOf(term) !== -1) {
+              return true;
+            }
+            return false;
+          });
+        }
+        return list;
+      };
+    }
+  }
+};
